@@ -714,13 +714,13 @@ end
 
 local function setPlotReady(plot)
 	plot.state = "ready"
-	plot.mound.Visible = true
+	plot.mound.Transparency = 0 plot.mound.CanCollide = true
 	plot.prompt.Enabled = true
 end
 
 local function plotCooldown(plot)
 	plot.state = "cooldown"
-	plot.mound.Visible = false
+	plot.mound.Transparency = 1 plot.mound.CanCollide = false
 	plot.prompt.Enabled = false
 	task.delay(PLOT_RESPAWN, function() setPlotReady(plot) end)
 end
@@ -756,7 +756,7 @@ end
 local function revealAndCollect(player, plot, def, shiny)
 	local data = playerData[player] if not data then plotCooldown(plot) return end
 	plot.state = "revealing"
-	plot.mound.Visible = false
+	plot.mound.Transparency = 1 plot.mound.CanCollide = false
 	plot.prompt.Enabled = false
 	local vs = villainScale(def, shiny)
 	local model = buildVillainModel(def, { shiny = shiny, scale = vs })
